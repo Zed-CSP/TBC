@@ -9,3 +9,13 @@ Note: Besides the correctness of the solutions, we will evaluate code style and 
 Good Luck!
 
 TBC Team
+
+
+
+Thankyou Team!
+This was a really cool challenge!
+See my notes under the instructions for each assignment.
+I enjoyed it a lot!
+
+Best regards,
+Chris

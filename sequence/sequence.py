@@ -10,6 +10,21 @@
 # complexity is obtained, for n ranging from 0 to at least
 # 100000. HINT: you are dealing with very large numbers!
 #
+#
+#
+#********************ANSWER*************************************************
+#   The algorithm has O(n) time complexity because:
+#   1. It uses a single loop that iterates n-1 times
+#   2. Each iteration performs constant time operations:
+#       - One multiplication (3 * prev1)
+#       - One subtraction (- prev2)
+#       - Variable assignments
+#   3. No recursive calls or nested loops are used
+#   4. The space complexity is O(1) as it maintains only two variables
+#       regardless of input size
+#
+#********************END OF ANSWER*****************************************
+#
 # (3)
 # Plot the execution time VS n (again, for n ranging from 0
 # to at least 100000).
@@ -19,6 +34,15 @@
 # from (3) matches the claimed time complexity from (2) (e.g.
 # by using curve fitting techniques).
 #
+#********************ANSWER*************************************************
+#   It doesnt match the claimed time complexity from (2)! ;D
+#
+#   while the algorithmic complexity appears O(n) from the code structure,
+#   the actual runtime complexity is affected by the growing cost
+#   of system operations on increasingly large numbers,
+#   leading to a better fit with quadratic or cubic models in practice.
+#
+#********************END OF ANSWER*****************************************
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -72,10 +96,18 @@ plt.xlabel('n')
 plt.ylabel('Execution time (seconds)')
 plt.title('Time Complexity Analysis')
 
-# Curve fitting to confirm O(n) complexity
-popt, _ = curve_fit(quadratic_fit, n_values, times)
-plt.plot(n_values, quadratic_fit(n_values, *popt), 'r-', 
-         label=f'Quadratic fit (ax^2 + bx + c)\na={popt[0]:.2e}, b={popt[1]:.2e}, c={popt[2]:.2e}') ## O(n^2) * a + O(n) * b + c
+# Curve fitting to confirm complexity
+popt_quad, _ = curve_fit(quadratic_fit, n_values, times)
+popt_linear, _ = curve_fit(linear_fit, n_values, times)
+popt_cubic, _ = curve_fit(cubic_fit, n_values, times)
+
+# Plot the different fits
+plt.plot(n_values, quadratic_fit(n_values, *popt_quad), 'r-', 
+         label=f'Quadratic fit (ax² + bx + c)\na={popt_quad[0]:.2e}, b={popt_quad[1]:.2e}, c={popt_quad[2]:.2e}')
+plt.plot(n_values, linear_fit(n_values, *popt_linear), 'g-', 
+         label=f'Linear fit (ax + b)\na={popt_linear[0]:.2e}, b={popt_linear[1]:.2e}')
+plt.plot(n_values, cubic_fit(n_values, *popt_cubic), 'y-', 
+         label=f'Cubic fit (ax³ + bx² + cx + d)\na={popt_cubic[0]:.2e}, b={popt_cubic[1]:.2e}, c={popt_cubic[2]:.2e}, d={popt_cubic[3]:.2e}')
 
 plt.legend()
 plt.grid(True)

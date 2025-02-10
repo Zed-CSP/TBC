@@ -59,7 +59,7 @@ class CarSimulator():
         self.y = self.y + self.v * np.sin(self.theta) * dt
 
 def main():
-    wheelbase = 2.89  # tesla model y wheelbase
+    wheelbase = 2.89  # ************ tesla model Y wheelbase ;) ************
     v0 = 0
     theta0 = 0
     simulator = CarSimulator(wheelbase, v0, theta0)
